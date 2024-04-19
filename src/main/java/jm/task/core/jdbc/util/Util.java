@@ -9,9 +9,10 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 
-
 public class Util {
     private static SessionFactory sessionFactory;
+    private static Util instance = null;
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -44,5 +45,12 @@ public class Util {
             }
         }
         return sessionFactory;
+    }
+
+    public static Util getInstance() {
+        if (null == instance) {
+            instance = new Util();
+        }
+        return instance;
     }
 }
